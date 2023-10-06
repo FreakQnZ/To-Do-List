@@ -109,7 +109,7 @@ export let BodyContent = () => {
 
           <input onKeyDown={enterkey} onChange={updatetext} id="inputele" placeholder="Enter Task" className='p-5 m-10 text-xl rounded-2xl w-80 border-2 border-stone-500' type="text"/>
 
-          <button onClick={updatelst} className='md:text-4xl text-2xl m-10 border-2 border-stone-500 rounded-2xl p-3 md:p-4 hover:bg-stone-900 transition-all ease-in-out duration-150'>Add item to List</button>
+          <button onClick={updatelst} className='md:text-4xl text-2xl m-10 border-2 border-stone-500 rounded-2xl p-3 md:p-4 hover:bg-stone-900 transition-all ease-in-out duration-150'>Add Task</button>
 
 
         </div>
