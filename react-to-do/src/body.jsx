@@ -39,6 +39,7 @@ export let BodyContent = () => {
       }
     })
     setLst(temp);
+    setPulsesw(false)
   }
 
   let pushup = (taskname) => {
@@ -104,7 +105,7 @@ export let BodyContent = () => {
         <div className='flex flex-col text-3xl'>{lst.map((taskname, key) => {
             return (
 
-            <div className={`flex justify-between p-4 border-2 border-stone-700 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
+            <div className={`flex justify-between p-4 border-2 border-stone-500 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
 
 
               <h1 className='p-2 self-center'>Task {incr++} : {taskname.task} </h1> 
@@ -112,7 +113,7 @@ export let BodyContent = () => {
               <div className="min-w-[200px] flex justify-end items-center">
 
 
-                <button onMouseOver={pulser} onMouseOut={pulser} onClick={() => {deletetxt(taskname)}} className='border-2 p-3 m-2 border-red-500 rounded-xl const-height hover:bg-red-600 transition-all ease-in-out duration-150'>X</button>
+                <button onMouseOver={pulser} onMouseOut={pulser} onClick={() => {deletetxt(taskname);}} className='border-2 p-3 m-2 border-red-500 rounded-xl const-height hover:bg-red-600 transition-all ease-in-out duration-150'>X</button>
 
                 <button onClick={() => {pushup(taskname)}} className="p-3 m-2 border-2 rounded-xl border-green-500 const-height hover:bg-green-600 transition-all ease-in-out duration-150">↥</button>
 
