@@ -5,7 +5,7 @@ export let BodyContent = () => {
 
   const [text, setText] = useState("");
   const [lst, setLst] = useState([]);
-  const [strike, setStrike] = useState(false)
+  const [strike, setStrike] = useState([])
   const [pulsesw, setPulsesw] = useState(false)
 
   let incr = 1;
@@ -39,7 +39,9 @@ export let BodyContent = () => {
       }
     })
     setLst(temp);
-    setPulsesw(false)
+    if (lst.indexOf(taskname) === (lst.length - 1)) {
+      setPulsesw(false)
+    }
   }
 
   let pushup = (taskname) => {
@@ -67,8 +69,24 @@ export let BodyContent = () => {
     setLst(templst)
   }
 
-  let complete = () => {
-    setStrike(!strike);
+  let complete = (taskname) => {
+    let curr = 0;
+    let temp = strike.filter((item) => {
+      if (item === taskname.id) {
+        curr = 1
+        return false
+      } else {
+        return true
+      }
+    })
+
+    if (curr !== 1) {
+      let newtemp = [...strike, taskname.id]
+      setStrike(newtemp)
+    } else {
+      setStrike(temp)
+    }
+
   }
 
   let pulser = () => {
@@ -99,10 +117,10 @@ export let BodyContent = () => {
         <div className='flex flex-col text-3xl'>{lst.map((taskname, key) => {
             return (
 
-            <div onDoubleClick={complete} className={`flex justify-between p-4 border-2 border-stone-500 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
+            <div onDoubleClick={() => {complete(taskname)}} className={`flex justify-between p-4 border-2 border-stone-500 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
 
 
-              <h1 className={`p-2 self-center`}>Task {incr++} : {taskname.task} </h1> 
+              <h1 className={`p-2 self-center ${strike.includes(taskname.id) ? "line-through" : ""}`}>Task {incr++} : {taskname.task} </h1> 
 
               <div className="min-w-[200px] flex justify-end items-center">
 
