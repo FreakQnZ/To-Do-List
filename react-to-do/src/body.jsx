@@ -6,6 +6,7 @@ export let BodyContent = () => {
   const [text, setText] = useState("");
   const [lst, setLst] = useState([]);
   const [strike, setStrike] = useState(false)
+  const [pulsesw, setPulsesw] = useState(false)
 
   let incr = 1;
 
@@ -23,6 +24,10 @@ export let BodyContent = () => {
       let templst = [...lst, temp];
       setLst(templst);
     }
+
+    let inp = document.getElementById('inputele')
+    inp.value = ""
+
   }
 
   let deletetxt = (taskname) => {
@@ -57,6 +62,7 @@ export let BodyContent = () => {
       templst[index+1] = temp
     }
 
+
     setLst(templst)
   }
 
@@ -70,6 +76,10 @@ export let BodyContent = () => {
     }
   }
 
+  let pulser = () => {
+    setPulsesw(!pulsesw)
+  }
+
   return (
     <div className="flex justify-center">
 
@@ -78,9 +88,9 @@ export let BodyContent = () => {
         <div className=' flex flex-col md:flex-row items-center justify-center mt-10'>
 
 
-          <input onChange={updatetext} placeholder="Enter Task" className='p-5 m-10 text-xl rounded-2xl w-80' type="text"/>
+          <input onChange={updatetext} id="inputele" placeholder="Enter Task" className='p-5 m-10 text-xl rounded-2xl w-80 border-2 border-stone-500' type="text"/>
 
-          <button onClick={updatelst} className='md:text-4xl text-2xl m-10 font-semibold hover:border-red-500 active:border-dashed border-2 rounded-full p-4 hover:bg-white hover:text-red-500'>Add item to List</button>
+          <button onClick={updatelst} className='md:text-4xl text-2xl m-10 border-4 border-stone-500 rounded-2xl p-3 md:p-4 bg-stone-950'><span className="">Add item to List</span></button>
 
 
         </div>
@@ -88,19 +98,19 @@ export let BodyContent = () => {
         <div className='flex flex-col text-3xl'>{lst.map((taskname, key) => {
             return (
 
-            <div className={'flex justify-between p-4'}>
+            <div className={`flex justify-between p-4 border-2 border-stone-400 rounded-xl m-2 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
 
 
-              <h1 onDoubleClick={() => {complete(); checkbox(taskname)}} className='p-2'>Task {incr++} : {taskname.task} </h1> 
+              <h1 className='p-2 self-center'>Task {incr++} : {taskname.task} </h1> 
 
               <div className="min-w-[200px] flex justify-end items-center">
 
 
-                <button onClick={() => {deletetxt(taskname)}} className='border-2 p-3 m-2 border-red-500 rounded-xl hover:text-red-500 hover:bg-white const-height'>X</button>
+                <button onMouseOver={pulser} onMouseOut={pulser} onClick={() => {deletetxt(taskname)}} className='border-2 p-3 m-2 border-red-500 rounded-xl const-height hover:bg-black '>X</button>
 
-                <button onClick={() => {pushup(taskname)}} className="p-3 m-2 border-2 rounded-xl hover:text-green-500 hover:bg-white border-green-500 const-height">↥</button>
+                <button onClick={() => {pushup(taskname)}} className="p-3 m-2 border-2 rounded-xl border-green-500 const-height hover:bg-black">↥</button>
 
-                <button onClick={() => {pushdown(taskname)}} className="p-3 m-2 border-2 rounded-xl hover:text-yellow-500 hover:bg-white border-yellow-500 const-height">↧</button>
+                <button onClick={() => {pushdown(taskname)}} className="p-3 m-2 border-2 rounded-xl border-yellow-500 const-height hover:bg-black">↧</button>
 
 
               </div>
