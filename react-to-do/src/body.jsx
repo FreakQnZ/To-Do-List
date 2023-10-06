@@ -71,12 +71,6 @@ export let BodyContent = () => {
     setStrike(!strike);
   }
 
-  let checkbox = (taskname) => {
-    if (strike) {
-       
-    }
-  }
-
   let pulser = () => {
     setPulsesw(!pulsesw)
   }
@@ -105,10 +99,10 @@ export let BodyContent = () => {
         <div className='flex flex-col text-3xl'>{lst.map((taskname, key) => {
             return (
 
-            <div className={`flex justify-between p-4 border-2 border-stone-500 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
+            <div onDoubleClick={complete} className={`flex justify-between p-4 border-2 border-stone-500 rounded-xl m-2 transition-all ease-in-out duration-150 ${pulsesw ? "hover:animate-pulse hover:border-red-600" : ""}`}>
 
 
-              <h1 className='p-2 self-center'>Task {incr++} : {taskname.task} </h1> 
+              <h1 className={`p-2 self-center`}>Task {incr++} : {taskname.task} </h1> 
 
               <div className="min-w-[200px] flex justify-end items-center">
 
